@@ -1,0 +1,47 @@
+# api_requirements.txt
+# Combined requirements for the Flask API server and the Wan2GP generation module (t2v_module.py)
+
+# --- Web Server ---
+Flask>=2.3.0
+
+# --- Core ML/DL (Match your Wan2GP environment) ---
+# Ensure this matches the PyTorch version compatible with your CUDA driver
+# Example for CUDA 12.4+ (adjust if needed):
+torch>=2.4.0
+torchvision>=0.19.0
+numpy>=1.23.5,<2.0
+
+# --- Wan2GP Core & Dependencies (Based on original requirements.txt) ---
+mmgp==3.3.4
+diffusers>=0.31.0
+transformers>=4.49.0
+tokenizers>=0.20.3
+accelerate>=1.1.1
+easydict
+einops
+peft==0.14.0
+
+# --- Hugging Face Hub (for model downloads) ---
+huggingface_hub>=0.17.0
+
+# --- Video/Image/Utility Dependencies ---
+imageio
+imageio-ffmpeg
+moviepy==1.0.3
+opencv-python>=4.9.0.80
+tqdm # Often used internally by libraries for progress bars
+ftfy # Used in wan/modules/tokenizers
+regex # Used in wan/modules/tokenizers
+mutagen # Used in t2v_module for embedding metadata (optional)
+
+# --- Optional Performance Libraries (Install Manually Based on OS/GPU) ---
+# Uncomment and adjust version if you have installed these:
+# For SageAttention (requires manual compilation on Linux, specific wheels for Windows)
+# sageattention==...
+# For SageAttention v2 (requires manual compilation on Linux, specific wheels for Windows)
+# sageattention==...
+# For FlashAttention (requires compatible GPU and build tools/pre-built wheel)
+# flash-attn==...
+# For Triton (needed by SageAttention, usually included in Linux PyTorch, separate install on Windows)
+# triton # (Linux - often comes with PyTorch >= 2.0)
+# triton-windows # (Windows)
